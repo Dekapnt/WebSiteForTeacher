@@ -1,0 +1,404 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+  
+  *, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  :focus, :active {
+    outline: none;
+  }
+  
+  a:focus, a:active {
+    outline: none;
+  }
+  
+  nav, footer, header, aside {
+    display: block;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    background-color: #fff;
+  }
+  
+  input, button, textarea {
+    font-family: inherit;
+  }
+  
+  input::-ms-clear {
+    display: none;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+  
+  a, a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  ul li {
+    list-style: none;
+  }
+  
+  img {
+    vertical-align: top;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: 400;
+  }
+
+/*---------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.root{
+    background-color: rgb(253, 255, 245); 
+}
+
+.title{
+  font-family: "Overpass", sans-serif;
+  font-size: 2.58vw;
+}
+
+.header{
+    position: fixed;
+    
+    background-color: rgb(179,140,97);
+    height: 70px;
+    width: 100%;
+    top: 0;
+}
+
+.header__content{
+    display: flex;
+    justify-content: center;
+    height: 70px;
+}
+
+.header__body{
+    width: 85vw;
+    display: flex;
+    height: 100%;
+}
+
+.header__name-webSite{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.header__name-webSite_text{
+    font-family: "Pacifico", cursive;
+    color: #fff;
+    font-size: 1.03vw;
+}
+
+.header__navMenu{
+    width: 50%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.header__navMenu_list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header__navMenu_list li a{
+    font-family: "Noto Sans SC", sans-serif;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.03vw;
+}
+
+/*main*/
+
+.body-webSite{
+    margin-top: 70px;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/*aboutMe*/
+
+.aboutMe{
+    width: 85vw;
+    display: flex;
+    margin-bottom: 50px;
+
+}
+
+.aboutMe__text{
+    width: 60%;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 40px;
+}
+
+.aboutMe__text_name{
+    
+    margin-bottom: 35px;
+    text-align: center;
+    
+}
+
+.aboutMe__text_paragraph{
+    font-size: 1.42vw;
+    line-height: 1.2;
+    font-family: "Noto Sans SC", sans-serif;
+}
+
+.aboutMe__text_paragraph p:first-child{
+    margin-bottom: 20px;
+}
+
+
+.aboutMe__image{
+    width: 40%;
+}
+
+.aboutMe__image img{
+    object-fit: cover;
+    height: auto;
+    width: 31.44vw;
+}
+
+/*articles*/
+
+.articles {
+  
+  width: 100%;
+  height: 100%;
+  background-color: rgb(187, 187, 187);
+  display: flex;
+  justify-content: center;
+  padding: 0 0 50px 0;
+}
+.articles__content{
+  padding-top: 25px;
+  width: 85vw;
+}
+.articles__title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.articles__items {
+  display: flex;
+
+  padding: 0 15vw 0 15vw;
+  justify-content: space-between;
+}
+
+/*artItem*/
+
+.artItem {
+  padding: 10px;
+  height: 19.33vw;
+  width: 25.77vw;
+  background-color: rgb(253, 255, 245);
+  box-shadow: 0px 0px 5px 1px #000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.artItem__title {
+  font-size: 1.42vw;
+  font-family: "Noto Sans SC", sans-serif;
+  margin-bottom: 10px;
+}
+
+.artItem__image{
+  text-align: center;
+}
+
+.artItem__image img{
+  height: auto;
+  width: 23.20vw;
+  object-fit: cover;
+  box-shadow: 0 0 1px 1px #000;
+}
+
+/*popUp*/
+
+.artItem__popUp {
+  padding: 15px;
+  cursor: default;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgb(253, 255, 245);
+  opacity: 1  ;
+  display: none;
+  width: 100%; /*Посмотрите на скролл*/
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.artItem__popUp_title{
+  font-size: 1.93vw;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.artItem__popUp_exit {
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  right: 25px;
+  padding: 5px;
+  display: block;  
+}
+
+.artItem__popUp_exit img{
+  width: 20px;
+  height: 20px;
+}
+
+.artItem__popUp_content p{
+  font-size: 1.29vw;
+  margin-bottom: 15px;
+  text-indent: 15px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.artItem__popUp_content-list li{
+  font-size: 1.29vw;
+  margin-bottom: 3px;
+  list-style: disc;
+  margin: 0 0 20px 50px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.artItem__popUp_content-list-2 li{
+  font-size: 1.29vw;
+  margin-bottom: 3px;
+  list-style: circle;
+  margin: 0 0 20px 60px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.artItem__popUp_content-list-2:first-child{
+  margin-top: 10px;
+}
+
+.artItem__popUp_content-list li:last-child{
+  margin: 0 0 20px 45px;
+}
+
+.artItem__popUp_content-list-2 li:last-child{
+  margin: 0 0 20px 60px;
+}
+
+/*sectificates*/
+
+.certificates {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}
+.certificates__content {
+  width: 70vw;
+}
+.certificates__title {
+  
+  text-align: center;
+  margin-bottom: 20px;
+}
+.certificates__items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 50px;
+  row-gap: 25px;
+  margin-bottom: 50px;
+}
+
+.certificates__item{
+  max-width: 100%;
+}
+
+/*footer*/
+
+.footer {
+  background-color: rgb(179,140,97);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.footer_content{
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.footer__socialNetwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.footer__socialNetwork a{
+  color: #fff;
+  font-size: 1.16vw;
+  margin-bottom: 5px;
+  font-family: "Noto Sans SC", sans-serif;
+}
+.footer__socialNetwork a:last-child{
+  margin-bottom: 0;
+}
+.footer__numberPhone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+.footer__numberPhone_number {
+  color: #fff;
+  font-size: 1.22vw;
+  margin-bottom: 5px;
+  font-family: "Noto Sans SC", sans-serif;
+}
+.footer__numberPhone_name {
+  color: #fff;
+  font-size: 1.42vw;
+  font-family: "Noto Sans SC", sans-serif;
+}
