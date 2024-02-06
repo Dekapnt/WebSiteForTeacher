@@ -10,30 +10,65 @@
             header: "",
             articles: "",
             certificates: "",
+            foto: "",
+            devvLess: "",
         }
         document.addEventListener("DOMContentLoaded", () => {
             startPositionBlocks.header = document.querySelector(`.header`).getBoundingClientRect().top
             startPositionBlocks.articles = document.querySelector(`.articles`).getBoundingClientRect().top
-            startPositionBlocks.certificates = document.querySelector(`.certificates`).getBoundingClientRect().top
-            
+            startPositionBlocks.certificates = document.querySelector(`.certificates`).getBoundingClientRect().top 
+            startPositionBlocks.foto = document.querySelector(`.foto`).getBoundingClientRect().top
+            startPositionBlocks.devvLess = document.querySelector(`.devvLess`).getBoundingClientRect().top
         });
-        const onFullScreenArticle = (numId) => {
-            document.body.setAttribute('style', 'overflow: hidden;')
-            document.getElementById(`popUp_${numId}`).setAttribute('style', 'display: block')
+
+
+        const switchHiddenScroll = (value) => {
+            if (value) {
+                document.body.setAttribute('style', 'overflow: hidden;')
+            } else {
+                document.body.setAttribute('style', 'overflow: vissible;')
+            }
         }
 
+
+        const onFullScreenArticle = (numId) => {
+            switchHiddenScroll(true)
+            document.getElementById(`popUp_${numId}`).setAttribute('style', 'display: block')
+        }
         const offFullScreenArticle = (numId) => {
-            document.body.setAttribute('style', 'overflow: vissible;')
+            switchHiddenScroll(false)
             document.getElementById(`popUp_${numId}`).setAttribute('style', 'display: none')
         }
 
         const goToScroll = (blockName) => {
-            window.scrollTo(0, startPositionBlocks[blockName])
+            window.scrollTo(0, startPositionBlocks[blockName] - 70)
         }
+
+
+
+        const createPopUpFoto = (a) => {
+            let div = document.createElement("div");
+            div.className = "popupFoto";
+            let div2 = document.createElement("div");
+            div2.className = "popupFoto__foto";
+            div.appendChild(div2)
+            let img = document.createElement("img");
+            img.src = a
+            div2.appendChild(img)
+            document.getElementById("root").appendChild(div)
+            switchHiddenScroll(true)
+            div.addEventListener('click', deletePopUpFoto)
+        }
+
+        const deletePopUpFoto = () => {
+            document.getElementById("root").removeChild(document.querySelector(".popupFoto"));
+            switchHiddenScroll(false)
+        }
+        
     </script>
   </head>
   <body>
-    <div class="root">
+    <div id="root"   class="root">
         <header class="header">
             <div class="header__content">
                 <div class="header__body">
@@ -43,21 +78,23 @@
                     <nav class="header__navMenu">
                         <ul class="header__navMenu_list">
                             <li><a onclick="goToScroll('header')">Обо мне</a></li>
-                            <li><a onclick="goToScroll('articles')">Мои статьи</a></li>
+                            <li><a onclick="goToScroll('foto')">Фото</a></li>
                             <li><a onclick="goToScroll('certificates')">Мои сертификаты</a></li>
+                            <li><a onclick="goToScroll('articles')">Мои статьи</a></li>
+                            <li><a onclick="goToScroll('devvLess')">Разработки уроков</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-        <main class="body-webSite">
+        <main class="body-webSite">         
             <div class="aboutMe">
                 <div class="aboutMe__text">
                     <div class="aboutMe__text_name title">
                         <h2>Наталия Максимович</h2>
                     </div>
                     <div class="aboutMe__text_paragraph">
-                        <p>Окончила Московский педагогический государственный университет (МПГУ). Мой трудовой стаж насчитывает более 17 лет, большую часть которого занималась международными выставками.  Последние 7 лет работаю учителем английского языка. </p>
+                        <p>Окончила Московский педагогический государственный университет (МПГУ) и так же закончила факультет иностранных языков. Мой трудовой стаж насчитывает более 17 лет, большую часть которого занималась международными выставками.  Последние 7 лет работаю учителем английского языка. </p>
                         <p>Современный учитель – это не профессия, это образ жизни. Я стремлюсь сделать так, чтобы ученики с удовольствием шли в школу, на мои уроки. Моя цель – убеждать учеников принять то содержание, которое я предлагаю с позиции научного знания. Ученик – творец этого знания, участник его порождения. Стремлюсь сделать так, чтобы урок разбудил интерес, укрепил силы его ума настолько, чтобы человек, выходя из школы в жизнь, мог без посторонних руководителей искать и находить разумное удовлетворение для своей пробудившейся любознательности. Когда учитель превращается в рассказчика, то он немедленно становится бесполезным, потому что роль рассказчика может с удовольствием играть хорошая книга, написанная ясным и правильным языком. Обязанность учителя состоит совсем не в том, чтобы рассказать ученику те факты, которые ученик должен запомнить, а в том, чтобы постоянно укреплять и развивать умственные способности такими упражнениями, которые во всякую данную минуту соответствовали бы размерам его наличных сил и которые с течением времени становились бы постоянно более трудными и более сложными.</p>
                     </div>    
                 </div>
@@ -65,21 +102,49 @@
                     <img src="./images/teacherPhoto.jpg" alt="photo" />
                 </div>
             </div>
+            <div class="foto">
+                <div class="foto__content">
+                    <div class="foto__title title">
+                        Фото
+                    </div>
+                    <div class="foto__items">
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/IMG-20221007-WA0009.jpg')" src="./images/IMG-20221007-WA0009.jpg" /></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/IMG-20221211-WA0007.jpg')" src="./images/IMG-20221211-WA0007.jpg" /></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/IMG-20221211-WA0008.jpg')" src="./images/IMG-20221211-WA0008.jpg"/></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/IMG_20240126_162042.jpg')" src="./images/IMG_20240126_162042.jpg" /></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/IMG_20231227_115621.jpg')" src="./images/IMG_20231227_115621.jpg" /></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/Пряничный домик 1.jpg')" src="./images/Пряничный домик 1.jpg" /></div>
+                        <div class="foto__item"><img onclick="createPopUpFoto('./images/Пряничный домик 2.jpg')" src="./images/Пряничный домик 2.jpg" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="certificates">
+                <div class="certificates__content">
+                    <div class="certificates__title title">
+                        Мои сертификаты
+                    </div>
+                    <div class="certificates__items">
+                        <img class="certificates__item" onclick="createPopUpFoto('./images/cer1.jpg')" src="./images/cer1.jpg" alt="" />
+                        <img class="certificates__item" onclick="createPopUpFoto('./images/Удостоверение 1_page-0001.jpg')" src="./images/Удостоверение 1_page-0001.jpg" alt="" />
+                        <img class="certificates__item" onclick="createPopUpFoto('./images/Удостоверение 2_page-0001.jpg')" src="./images/Удостоверение 2_page-0001.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
             <div class="articles">
                 <div class="articles__content">
                     <h2 class="articles__title title">Мои статьи</h2>
                     <div class="articles__items">
-                        <div onclick="onFullScreenArticle(1)" class="articles__item artItem">
-                            <div class="artItem__title ">
+                        <div onclick="onFullScreenArticle(1)" class="articles__item item">
+                            <div class="item__title ">
                                 Как заставить взрослых учеников и детей разговаривать на иностранных языках
                             </div>
-                            <div class="artItem__image">
-                                <img  src="./images/articles.png" />
+                            <div class="item__image">
+                                <img  src="./images/scale_1200.jpeg" />
                             </div>
-                            <div id="popUp_1" class="artItem__popUp">
-                                <div class="artItem__popUp_title title">Как заставить взрослых учеников и детей разговаривать на иностранных языках</div>
-                                <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(1)" class="artItem__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
-                                <div class="artItem__popUp_content">
+                            <div id="popUp_1" class="item__popUp">
+                                <div class="item__popUp_title title">Как заставить взрослых учеников и детей разговаривать на иностранных языках</div>
+                                <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(1)" class="item__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
+                                <div class="item__popUp_content">
                                     <p>И взрослым, и детям нужна практика разговора, чтобы иметь возможность развивать свои разговорные навыки, но вещи, которые стимулируют их к разговору, часто совершенно разные.</p>
                                     
                                     <p>Этот совет сравнивает различные подходы к тому, чтобы взрослые и дети разговаривали.</p>
@@ -88,7 +153,7 @@
                                     
                                     <p>Детей нужно поощрять к тому, чтобы они учились через игру и сосредотачивались на задаче, а не на отработке языкового предмета. Они необходимы:</p>
                                     
-                                    <ul class="artItem__popUp_content-list">
+                                    <ul class="item__popUp_content-list">
                                         <li>Чтобы получить удовольствие</li>
                                         <li>Притворяться</li>
                                         <li>Почувствовать, что они могут быстро говорить на языке</li>
@@ -96,7 +161,7 @@
                                     
                                     <p>Упражнения, подходящие для поощрения детей к разговору:</p>
                                     
-                                    <ul class="artItem__popUp_content-list">
+                                    <ul class="item__popUp_content-list">
                                         <li>Ролевая игра: детям нравится быть кем-то другим и разыгрывать ситуацию. Например: в магазине, у доктора. Дети естественным образом используют ролевые игры в своих языковых ситуациях.</li>
                                         <li>Сторителлинг: естественный способ способствовать повторению структур и словарного запаса. Выбирайте истории с повторением, такие как «Три поросенка» или «Очень голодная гусеница».</li>
                                         <li>Куклы и реквизит: Еще один способ, с помощью которого дети могут воображать диалог и практиковаться, притворяясь, что они заставляют кукол говорить. Реквизит, такой как переодевание или маски, помогает им вживаться в роли и сосредотачиваться.</li>
@@ -108,14 +173,14 @@
                                     
                                     <p>Взрослые должны знать, почему они выполняют то или иное упражнение (какие языковые предметы они практикуют) и чувствовать, что разговор отражает то, о чем они хотели бы поговорить. Они необходимы:</p>
                                     
-                                    <ul class="artItem__popUp_content-list">
+                                    <ul class="item__popUp_content-list">
                                         <li>Чувствовать, что ситуация отражает контекст, в котором они окажутся (они предпочитают реальность притворству)</li>
                                         <li>Чувствовать, что они не находятся под пристальным вниманием каждую минуту (со стороны учителя!)</li>
                                     </ul>
                                     
                                     <p>Помочь взрослым ученикам захотеть поговорить</p>
                                     
-                                    <ul class="artItem__popUp_content-list">
+                                    <ul class="item__popUp_content-list">
                                         <li>Уменьшите количество информации, пока они разговаривают с вами или друг с другом – ничего не говорите и слушайте</li>
                                         <li>Держитесь в тени, чтобы они не стеснялись говорить перед вами (не стойте впереди во время работы в паре) Дети меньше беспокоятся о том, что за ними наблюдают.</li>
                                         <li>Дайте понять, что ошибки являются нормальной частью обучения, и сосредоточьтесь на них после того, как вы дадите положительную обратную связь по содержанию того, что они сказали (идеи, мнения)</li>
@@ -124,7 +189,7 @@
                                     
                                     <p>Лучшие типы заданий включают в себя</p>
                                     
-                                    <ul class="artItem__popUp_content-list">
+                                    <ul class="item__popUp_content-list">
                                         <li>Предоставление информации о себе и своем опыте в мире, своей работе или семье (если это уместно) с помощью анкет.</li>
                                         <li>Ролевые игры и построение диалога в социальных ситуациях, которые могут понадобиться им для путешествий, работы или встреч с иностранцами в их собственном городе.</li>
                                         <li>Чтение и ответы на статьи, тематические исследования или песни по вопросам, относящимся к их возрастному диапазону.</li>
@@ -135,39 +200,39 @@
                             
                         </div>
                     </div>
-                        <div onclick="onFullScreenArticle(2)" class="articles__item artItem">
-                                <div class="artItem__title">
+                        <div onclick="onFullScreenArticle(2)" class="articles__item item">
+                                <div class="item__title">
                                     Мероприятия по использованию журналов на английском языке в классе
                                 </div>
-                                <div class="artItem__image">
-                                    <img  src="./images/articles_2.png" />
+                                <div class="item__image">
+                                    <img  src="./images/pTodGxx7c.jpg" />
                                 </div>
-                                <div id="popUp_2" class="artItem__popUp">
-                                    <div class="artItem__popUp_title title">Мероприятия по использованию журналов на английском языке в классе                                </div>
-                                    <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(2)" class="artItem__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
-                                    <div class="artItem__popUp_content">
+                                <div id="popUp_2" class="item__popUp">
+                                    <div class="item__popUp_title title">Мероприятия по использованию журналов на английском языке в классе                                </div>
+                                    <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(2)" class="item__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
+                                    <div class="item__popUp_content">
                                         <p>Журналы являются богатым источником аутентичных материалов и могут быть очень мотивирующими и вдохновлять на широкий спектр мероприятий.</p>
                                         <p>Вы можете принести в класс целые журналы, чтобы пробудить интерес к британской и американской культуре, познакомить с темой медиа и языка или просто помочь ученикам разобраться в работе с целой публикацией на английском языке. Если есть возможность, полезно использовать копии журналов для подростков или языковых журналов. Вот несколько идей и советов, которые помогут вам извлечь из них максимальную пользу.</p>
                                         <p><span style="font-weight: 700;">Обложка</span></p>
-                                        <ul class="artItem__popUp_content-list">
+                                        <ul class="item__popUp_content-list">
                                             <li>Используйте изображение на обложке, чтобы провести мозговой штурм по словам, связанным с изображением (и вероятным темам, которые можно найти в журнале).</li>
                                             <li>Посмотрите на заголовки на обложке, чтобы предугадать основные темы, затронутые в ней. Спросите: Что бы вы прочитали в первую очередь? Для более высоких уровней: Какие типы слов используются, чтобы вызвать у вас желание читать?</li>
                                             <li>Выберите лучшую обложку из 4 журналов. Проведите голосование в классе. Какая обложка вам нравится больше всего? Почему? Для более высоких уровней: Что делает обложку хорошей?</li>
                                         </ul>
                                         <p><span style="font-weight: 700;">Использование целого журнала</span></p>
-                                        <ul class="artItem__popUp_content-list">
+                                        <ul class="item__popUp_content-list">
                                             <li>Установите ограничение по времени для этих заданий, чтобы побудить студентов бегло просматривать публикации.</li>
                                             <li>Попросите студентов разбиться на пары и бегло просмотреть свой журнал и перечислить темы, которые он рассматривал. Поощряйте использование заголовков и картинок, чтобы угадать типы тем. Сравните их список тем со страницей содержания.</li>
                                             <li>Напишите на доске ключевые заголовки из всех основных тематических статей и продиктуйте список тем или тем. Попросите студентов сопоставить темы с заголовками на доске. Затем проверьте с помощью журнала.</li>
                                             <li>Укажите вопросы викторины, заданные по времени:
-                                                <ul class="artItem__popUp_content-list-2">
+                                                <ul class="item__popUp_content-list-2">
                                                     <li>Где можно почитать о собаках?</li>
                                                     <li>Где можно узнать о  школах?</li>
                                                     <li>Где можно почитать о музыке?</li>
                                                 </ul>
                                             </li>
                                             <li>Для учащихся среднего уровня или выше составьте вопросы, а затем попросите пары или группы составить свои собственные вопросы, используя свои примеры:
-                                                <ul class="artItem__popUp_content-list-2">
+                                                <ul class="item__popUp_content-list-2">
                                                     <li>У какого британского поп-певца берут интервью на этой неделе?</li>
                                                     <li>Какой вид спорта самый популярный в школах?</li>
                                                     <li>Какой тип пищи описан в разделе о питании?</li>
@@ -176,19 +241,19 @@
                                                 </ul>
                                             </li>
                                             <p><span style="font-weight: 700;">Выбирайте то, что вам по душе</span></p>
-                                            <ul class="artItem__popUp_content-list">
+                                            <ul class="item__popUp_content-list">
                                                 <li>Попросите учеников бегло просмотреть и быстро выбрать статью/страницу, которая им больше всего нравится. Они могут рассказать своей группе или классу, почему. Это поможет вам увидеть, какие типы тем их интересуют, для будущего планирования тем для разговора.</li>
                                                 <li>Более высокие уровни могут выбрать короткую статью и прочитать ее в своей группе. Затем каждая группа делает устное резюме статьи, чтобы отчитаться перед остальным классом.</li>
                                             </ul>
                                             <p><span style="font-weight: 700;">Понимание</span></p>
-                                            <ul class="artItem__popUp_content-list">
+                                            <ul class="item__popUp_content-list">
                                                 <li>Сложность зависит от уровня класса. Для этого используйте журналы с оценками по языку для более низких уровней и аутентичные журналы для среднего уровня и выше.</li>
                                                 <li>Дайте им список заголовков из журнала и предложение/подзаголовок или короткий текст из каждой статьи. Могут ли они сопоставить заголовки с выдержками из статей? Делайте это в парах.</li>
                                                 <li>Выберите одну статью или предоставьте выбор студентам более высокого уровня. Учащиеся воображают, что они журналисты, написавшие статью. Пары придумывают 4 или 5 основных вопросов, которые журналист задал, чтобы получить информацию. (хорошо работает с интервью поп-звезд, описаниями событий или новостями о том, что произошло).</li>
                                                 <li>Объедините все вопросы или объедините 2 пары в группу по 4 человека, чтобы объединить их вопросы. Затем попросите студента разыграть по ролям разговор между журналистом и его собеседником, используя придуманные им вопросы и то, что они узнали из статьи. Используйте короткие статьи для этого упражнения.</li>
                                             </ul>
                                             <p><span style="font-weight: 700;">Журнальные картинки</span></p>
-                                            <ul class="artItem__popUp_content-list">
+                                            <ul class="item__popUp_content-list">
                                                 <li>Даже более низкие уровни могут выполнять задания, описывать картинки и находить картинки в журнале, даже если они еще недостаточно опытны, чтобы читать настоящий английский журнал.</li>
                                                 <li>Ученики приносят экземпляр своего любимого журнала и рассказывают о нем остальным ученикам на следующем уроке, объясняя, почему он им нравится.</li>
                                             </ul>
@@ -202,29 +267,77 @@
                     </div>
                 </div>
             </div>
-            <div class="certificates">
-                <div class="certificates__content">
-                    <div class="certificates__title title">
-                        Мои сертификаты
-                    </div>
-                    <div class="certificates__items">
-                        <img class="certificates__item" src="./images/cer1.jpg" alt="" />
+            
+            
+            <div class="devvLess">
+                <div class="devvLess__content">
+                    <div class="devvLess__title title">Разработка уроков</div>
+                    <div class="devvLess__items">
+                        <div onclick="onFullScreenArticle(3)" class="devvLess__item item">
+                            <div class="item__title">Хобби. Прошедшее простое время</div>
+                            <div class="item__image">
+                                <img src="./images/pTodGxx7c.jpg" alt="" />
+                            </div>
+                            <div id="popUp_3" class="item__popUp">
+                                <div class="item__popUp_content">
+                                    <div class="item__popUp_title title">ТЕХНОЛОГИЧЕСКАЯ КАРТА ОТКРЫТОГО УРОКА</div>
+                                    <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(3)" class="item__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
+                                    <div class="item__popUp_subtitle">«Хобби. Прошедшее простое время»</div>
+                                    <div class="item__popUp_description">
+                                        <p>Учитель: Максимович Н.В.</p>
+                                        <p>Место проведения: МОУ «Истринская СОШ №3»</p>
+                                        <p>Класс: 4В (ауд.9а)</p>
+                                    </div>
+                                    <div class="item__popUp_purpose">
+                                        <p>Тема: Мои хобби, мои увлечения. Past Simple правильних и неправильних глаголов, утверждение, отрицание, общий вопрос.<br/>
+                                        Цели и задачи: Овладение навыков</p>
+                                    </div>
+                                    <p>Планируемые результаты:овладение навыком употребления грамматических
+                                        структур прошедшего времени, формирование навыков говорения , построение
+                                        системы упражнений для овладения равыком употребления грамматических
+                                        структур.
+                                    </p>
+                                    <p><span style="font-weight: 700;">ХОД УРОКА</span></p>
+                                    <ul class="item__popUp_number-list">
+                                        <li><p>ОРГАНИЗАЦИОННЫЙ МОМЕНТ</p>
+                                            <p>Good morning, dear boys and girls. Today I am your teacher of English. My name
+                                                is Irina Albertovna. To start our lesson I want you to do this crossword and find
+                                                the main word.
+                                                Slide 1,2 - Crossword
+                                                Итак, сегодня мы повторяем лексику по теме «Хобби и увлечения», а также
+                                                Прошедшее простое время. What is a hobby?
+                                            </p>
+                                        </li>
+                                        <li><p>Повторение лексики по картинкам</p></li>
+                                        <li><p>Повторение правила</p>
+                                            <p>-When мы используем ПВ?</p>
+                                            <p>-Какие слова-маркеры нам подсказывают, что это ПВ?</p>
+                                            <p>-Как меняются правильные глаголы в ПВ в утвердительных предложениях?</p>
+                                            <p>-Как читается окончание –ed в правильных глаголах? Фонет.зарядка!</p>
+                                            <p>-Как меняются неправильные глаголы в ПВ в утвердительных предложениях?</p>
+                                            <p>-Мы знаем, что в отрицаниях и общих вопросах глаголы не меняются. Но
+                                            какой вспомогательный глагол-помощник появляется в отрицаниях и
+                                            вопросах?</p>
+                                        </li>
+                                        <li><p>Практическое применение</p>
+                                            <p>Работа с текстом – Slide 11 -Угадай хобби</p>
+                                            <p>Работа с таблицей - вторая форма глаголов A Tick means that your answer is
+                                                correct.</p>
+                                        </li>
+                                        <li><p>Дом.задание:</p>
+                                            <p>Рассказ о хобби друзей и членов своей семьи, когда они были детьми</p>
+                                        </li>
+                                        <li><p>Рефлексия</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
+        
         <footer class="footer">
-            <div class="footer_content">
-                <div class="footer__socialNetwork">
-                    <a href="">Вконтакте</a>
-                    <a href="">Вконтакте</a>
-                    <a href="">Вконтакте</a>
-                </div>
-                <div class="footer__numberPhone">
-                    <div class="footer__numberPhone_number">8-9**-**-**</div>
-                    <div class="footer__numberPhone_name">Наталья Владимировна</div>
-                </div>
-            </div>
         </footer>
     </div>
   </body>

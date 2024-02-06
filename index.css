@@ -216,45 +216,49 @@
 }
 .articles__items {
   display: flex;
-
+  flex-wrap: wrap;
   padding: 0 15vw 0 15vw;
   justify-content: space-between;
+  
 }
 
-/*artItem*/
+/*item*/
 
-.artItem {
+.item {
   padding: 10px;
-  height: 19.33vw;
-  width: 25.77vw;
+  height: 450px;
+  width: 400px;
   background-color: rgb(253, 255, 245);
   box-shadow: 0px 0px 5px 1px #000;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 0 25px 0;
 }
 
-.artItem__title {
-  font-size: 1.42vw;
+.item__title {
+  font-size: 26px;
+  text-align: center;
   font-family: "Noto Sans SC", sans-serif;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
-.artItem__image{
+.item__image{
   text-align: center;
 }
 
-.artItem__image img{
-  height: auto;
-  width: 23.20vw;
+.item__image img{
+  height: 255px;
+  width: 380px;
   object-fit: cover;
   box-shadow: 0 0 1px 1px #000;
 }
 
 /*popUp*/
 
-.artItem__popUp {
+.item__popUp {
   padding: 15px;
   cursor: default;
   position: fixed;
@@ -269,13 +273,13 @@
   overflow-x: hidden;
 }
 
-.artItem__popUp_title{
+.item__popUp_title{
   font-size: 1.93vw;
   text-align: center;
   margin-bottom: 15px;
 }
 
-.artItem__popUp_exit {
+.item__popUp_exit {
   cursor: pointer;
   position: fixed;
   top: 10px;
@@ -284,12 +288,12 @@
   display: block;  
 }
 
-.artItem__popUp_exit img{
+.item__popUp_exit img{
   width: 20px;
   height: 20px;
 }
 
-.artItem__popUp_content p{
+.item__popUp_content p{
   font-size: 1.29vw;
   margin-bottom: 15px;
   text-indent: 15px;
@@ -298,7 +302,7 @@
   line-height: 1.2;
 }
 
-.artItem__popUp_content-list li{
+.item__popUp_content-list li{
   font-size: 1.29vw;
   margin-bottom: 3px;
   list-style: disc;
@@ -308,7 +312,7 @@
   line-height: 1.2;
 }
 
-.artItem__popUp_content-list-2 li{
+.item__popUp_content-list-2 li{
   font-size: 1.29vw;
   margin-bottom: 3px;
   list-style: circle;
@@ -318,24 +322,41 @@
   line-height: 1.2;
 }
 
-.artItem__popUp_content-list-2:first-child{
+.item__popUp_content-list-2:first-child{
   margin-top: 10px;
 }
 
-.artItem__popUp_content-list li:last-child{
+.item__popUp_content-list li:last-child{
   margin: 0 0 20px 45px;
 }
 
-.artItem__popUp_content-list-2 li:last-child{
+.item__popUp_content-list-2 li:last-child{
   margin: 0 0 20px 60px;
 }
 
+.item__popUp_subtitle{
+  font-size: 29px;
+  text-align: center;
+}
+
+.item__popUp_number-list li{
+  font-size: 20px;
+  margin-bottom: 3px;
+  list-style:decimal;
+  margin: 0 0 20px 60px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+}
 /*sectificates*/
+.item__popUp_description{
+  text-align: right;  
+}
 
 .certificates {
   display: flex;
   justify-content: center;
-  padding-top: 15px;
+  padding: 20px 0 25px 0;
 }
 .certificates__content {
   width: 70vw;
@@ -355,50 +376,104 @@
 
 .certificates__item{
   max-width: 100%;
+  cursor: pointer;
 }
 
 /*footer*/
 
 .footer {
   background-color: rgb(179,140,97);
-  height: 100px;
+  height: 50px;
+}
+
+/*Фото*/
+
+.foto {
+  background-color: rgb(187, 187, 187);
+  width: 100%;
   display: flex;
   justify-content: center;
+  padding-top: 20px;
 }
-.footer_content{
+.foto__content {
   width: 70vw;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-.footer__socialNetwork {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.footer__socialNetwork a{
-  color: #fff;
-  font-size: 1.16vw;
-  margin-bottom: 5px;
-  font-family: "Noto Sans SC", sans-serif;
-}
-.footer__socialNetwork a:last-child{
-  margin-bottom: 0;
-}
-.footer__numberPhone {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   
+
 }
-.footer__numberPhone_number {
-  color: #fff;
-  font-size: 1.22vw;
-  margin-bottom: 5px;
-  font-family: "Noto Sans SC", sans-serif;
+.foto__title {
+  text-align: center;
+  margin-bottom: 25px;
 }
-.footer__numberPhone_name {
-  color: #fff;
-  font-size: 1.42vw;
-  font-family: "Noto Sans SC", sans-serif;
+.foto__items {
+  display: grid;
+  max-width: 70vw;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'big small1 big2' 'big small2 big2' 'big3 big4 big5' 'big3 big4 big5';
+  grid-template-rows: 200px 200px 120px 120px;
+  column-gap: 50px;
+  row-gap: 40px;
+  margin-bottom: 50px;
 }
+.foto__item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.foto__item img{
+  height: 100%;
+  object-fit: cover;
+}
+.foto__item:nth-child(1){
+  grid-area: big;
+}
+.foto__item:nth-child(2){
+  grid-area: small1;
+}
+.foto__item:nth-child(3){
+  grid-area: small2;
+}
+.foto__item:nth-child(4){
+  grid-area: big2;
+}
+.foto__item:nth-child(5){
+  grid-area: big3;
+}
+.foto__item:nth-child(6){
+  grid-area: big4;
+}
+.foto__item:nth-child(7){
+  grid-area: big5;
+}
+
+
+/*Попап фотографии*/
+
+.popupFoto{
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  width: 100vw; 
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.popupFoto__foto img{
+  max-width: 60vw;
+  max-height: 90vh;
+}
+
+.devvLess__content{
+  padding: 20px 0 35px 0;
+}
+.devvLess__title{
+  margin-bottom: 35px;
+}
+
