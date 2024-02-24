@@ -4,68 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="index.css">
-    <title>Teacher website</title>
-    <script>
-        let startPositionBlocks = {
-            header: "",
-            articles: "",
-            certificates: "",
-            foto: "",
-            devvLess: "",
-        }
-        document.addEventListener("DOMContentLoaded", () => {
-            startPositionBlocks.header = document.querySelector(`.header`).getBoundingClientRect().top
-            startPositionBlocks.articles = document.querySelector(`.articles`).getBoundingClientRect().top
-            startPositionBlocks.certificates = document.querySelector(`.certificates`).getBoundingClientRect().top 
-            startPositionBlocks.foto = document.querySelector(`.foto`).getBoundingClientRect().top
-            startPositionBlocks.devvLess = document.querySelector(`.devvLess`).getBoundingClientRect().top
-        });
-
-
-        const switchHiddenScroll = (value) => {
-            if (value) {
-                document.body.setAttribute('style', 'overflow: hidden;')
-            } else {
-                document.body.setAttribute('style', 'overflow: vissible;')
-            }
-        }
-
-
-        const onFullScreenArticle = (numId) => {
-            switchHiddenScroll(true)
-            document.getElementById(`popUp_${numId}`).setAttribute('style', 'display: block')
-        }
-        const offFullScreenArticle = (numId) => {
-            switchHiddenScroll(false)
-            document.getElementById(`popUp_${numId}`).setAttribute('style', 'display: none')
-        }
-
-        const goToScroll = (blockName) => {
-            window.scrollTo(0, startPositionBlocks[blockName] - 70)
-        }
-
-
-
-        const createPopUpFoto = (a) => {
-            let div = document.createElement("div");
-            div.className = "popupFoto";
-            let div2 = document.createElement("div");
-            div2.className = "popupFoto__foto";
-            div.appendChild(div2)
-            let img = document.createElement("img");
-            img.src = a
-            div2.appendChild(img)
-            document.getElementById("root").appendChild(div)
-            switchHiddenScroll(true)
-            div.addEventListener('click', deletePopUpFoto)
-        }
-
-        const deletePopUpFoto = () => {
-            document.getElementById("root").removeChild(document.querySelector(".popupFoto"));
-            switchHiddenScroll(false)
-        }
-        
+    <script
+        src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous">
     </script>
+    <title>Teacher website</title>
+    <script src="./script.js"></script>
   </head>
   <body>
     <div id="root"   class="root">
@@ -77,32 +22,47 @@
                     </div>
                     <nav class="header__navMenu">
                         <ul class="header__navMenu_list">
-                            <li><a onclick="goToScroll('header')">Обо мне</a></li>
-                            <li><a onclick="goToScroll('foto')">Фото</a></li>
-                            <li><a onclick="goToScroll('certificates')">Мои сертификаты</a></li>
-                            <li><a onclick="goToScroll('articles')">Мои статьи</a></li>
-                            <li><a onclick="goToScroll('devvLess')">Разработки уроков</a></li>
+                            <li><a href="#aboutMe">Обо мне</a></li>
+                            <li><a href="#foto">Фото</a></li>
+                            <li><a href="#certificates">Мои сертификаты</a></li>
+                            <li><a href="#articles">Мои статьи</a></li>
+                            <li><a href="#devvLess">Разработки уроков</a></li>
                         </ul>
                     </nav>
+                    <div onclick="testTarget(event)" class="header__burgerMenu">
+                        <div onclick="switchStateBurgerMenu()" class="header__burgerMenu_button">
+                            <button class="header__burgerMenu_buttonImg"><span></span></button>
+                        </div>
+                        <nav class="header__navMenu_bg">
+                            <ul class="header__navMenu_list_bg">
+                                <li><a href="#aboutMe">Обо мне</a></li>
+                                <li><a href="#foto">Фото</a></li>
+                                <li><a href="#certificates">Мои сертификаты</a></li>
+                                <li><a href="#articles">Мои статьи</a></li>
+                                <li><a href="#devvLess">Разработки уроков</a></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </header>
-        <main class="body-webSite">         
-            <div class="aboutMe">
+        <main class="body-webSite">
+            <div id="aboutMe" class="aboutMe">
                 <div class="aboutMe__text">
                     <div class="aboutMe__text_name title">
                         <h2>Наталия Максимович</h2>
                     </div>
                     <div class="aboutMe__text_paragraph">
-                        <p>Окончила Московский педагогический государственный университет (МПГУ) и так же закончила факультет иностранных языков. Мой трудовой стаж насчитывает более 17 лет, большую часть которого занималась международными выставками.  Последние 7 лет работаю учителем английского языка. </p>
+                        <p>Окончила Московский педагогический государственный университет (МПГУ), факультет иностранных языков, английское училище. Мой трудовой стаж насчитывает более 17 лет, большую часть которого занималась международными выставками.  Последние 7 лет работаю учителем английского языка. </p>
                         <p>Современный учитель – это не профессия, это образ жизни. Я стремлюсь сделать так, чтобы ученики с удовольствием шли в школу, на мои уроки. Моя цель – убеждать учеников принять то содержание, которое я предлагаю с позиции научного знания. Ученик – творец этого знания, участник его порождения. Стремлюсь сделать так, чтобы урок разбудил интерес, укрепил силы его ума настолько, чтобы человек, выходя из школы в жизнь, мог без посторонних руководителей искать и находить разумное удовлетворение для своей пробудившейся любознательности. Когда учитель превращается в рассказчика, то он немедленно становится бесполезным, потому что роль рассказчика может с удовольствием играть хорошая книга, написанная ясным и правильным языком. Обязанность учителя состоит совсем не в том, чтобы рассказать ученику те факты, которые ученик должен запомнить, а в том, чтобы постоянно укреплять и развивать умственные способности такими упражнениями, которые во всякую данную минуту соответствовали бы размерам его наличных сил и которые с течением времени становились бы постоянно более трудными и более сложными.</p>
                     </div>    
                 </div>
                 <div class="aboutMe__image">
-                    <img src="./images/teacherPhoto.jpg" alt="photo" />
+                    <img onclick="createPopUpFoto('./images/teacherPhoto.jpg')" src="./images/teacherPhoto.jpg" alt="photo" />
                 </div>
             </div>
-            <div class="foto">
+            
+            <div id="foto" class="foto">
                 <div class="foto__content">
                     <div class="foto__title title">
                         Фото
@@ -118,19 +78,19 @@
                     </div>
                 </div>
             </div>
-            <div class="certificates">
+            <div id="certificates" class="certificates">
                 <div class="certificates__content">
                     <div class="certificates__title title">
                         Мои сертификаты
                     </div>
                     <div class="certificates__items">
-                        <img class="certificates__item" onclick="createPopUpFoto('./images/cer1.jpg')" src="./images/cer1.jpg" alt="" />
-                        <img class="certificates__item" onclick="createPopUpFoto('./images/Удостоверение 1_page-0001.jpg')" src="./images/Удостоверение 1_page-0001.jpg" alt="" />
-                        <img class="certificates__item" onclick="createPopUpFoto('./images/Удостоверение 2_page-0001.jpg')" src="./images/Удостоверение 2_page-0001.jpg" alt="" />
+                        <div class="certificates__item" ><img onclick="createPopUpFoto('./images/cer1.jpg')" src="./images/cer1.jpg" alt="" /></div>
+                        <div class="certificates__item" ><img onclick="createPopUpFoto('./images/Удостоверение 1_page-0001.jpg')" src="./images/Удостоверение 1_page-0001.jpg" alt="" /></div>
+                        <div class="certificates__item" ><img onclick="createPopUpFoto('./images/Удостоверение 2_page-0001.jpg')" src="./images/Удостоверение 2_page-0001.jpg" alt="" /></div>
                     </div>
                 </div>
             </div>
-            <div class="articles">
+            <div id="articles" class="articles">
                 <div class="articles__content">
                     <h2 class="articles__title title">Мои статьи</h2>
                     <div class="articles__items">
@@ -267,9 +227,7 @@
                     </div>
                 </div>
             </div>
-            
-            
-            <div class="devvLess">
+            <div id="devvLess" class="devvLess">
                 <div class="devvLess__content">
                     <div class="devvLess__title title">Разработка уроков</div>
                     <div class="devvLess__items">
@@ -282,7 +240,7 @@
                                 <div class="item__popUp_content">
                                     <div class="item__popUp_title title">ТЕХНОЛОГИЧЕСКАЯ КАРТА ОТКРЫТОГО УРОКА</div>
                                     <span onclick="event.stopPropagation()"><div onclick="offFullScreenArticle(3)" class="item__popUp_exit"><img src="./images/close.svg" alt=""></div></span>
-                                    <div class="item__popUp_subtitle">«Хобби. Прошедшее простое время»</div>
+                                    <div class="item__popUp_subtitle title">«Хобби. Прошедшее простое время»</div>
                                     <div class="item__popUp_description">
                                         <p>Учитель: Максимович Н.В.</p>
                                         <p>Место проведения: МОУ «Истринская СОШ №3»</p>
@@ -336,7 +294,6 @@
                 </div>
             </div>
         </main>
-        
         <footer class="footer">
         </footer>
     </div>
